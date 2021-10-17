@@ -6,6 +6,8 @@
   "main": "src/index.js",
   "dependencies": {
     "@testing-library/jest-dom": "5.14.1",
+    "@testing-library/react": "^10.4.7",
+    "@testing-library/user-event": "^13.0.10",
     "axios": "0.20.0",
     "bootstrap": "4.5.2",
     "chai": "4.3.4",
@@ -30,10 +32,5 @@
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
   },
-  "browserslist": [
-    ">0.2%",
-    "not dead",
-    "not ie <= 11",
-    "not op_mini all"
-  ]
+  "browserslist": [">0.2%", "not dead", "not ie <= 11", "not op_mini all"]
 }

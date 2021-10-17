@@ -7,15 +7,16 @@ export class Header extends Component {
       <div className="row">
         <div className="col-md-12">
           <nav className="navbar  navbar-dark bg-dark ">
-            <ul className="nav">
+            <ul className="nav" data-testid="head">
               <li className="nav-item">
-                <Link data-testid="products" to="/" className="nav-link active">
+                <Link to="/" data-testid="Products" className="nav-link active">
                   Products
                 </Link>
               </li>
               <li className="nav-item">
-                <Link to="/carts" className="nav-link">
-                  Carts : {this.props.numberCart}
+                <Link data-testid="Carts" to="/carts" className="nav-link">
+                  Carts :{" "}
+                  <span data-testid="cartValue">{this.props.numberCart}</span>
                 </Link>
               </li>
             </ul>

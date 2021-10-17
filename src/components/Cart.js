@@ -16,7 +16,7 @@ function Cart({ items, IncreaseQuantity, DecreaseQuantity, DeleteCart }) {
   return (
     <div className="row">
       <div className="col-md-12">
-        <table className="table">
+        <table className="table" data-testid="My Cart">
           <thead>
             <tr>
               <th></th>

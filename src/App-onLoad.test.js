@@ -1,24 +1,51 @@
-// Test Case 1
+import { render as rtlRender, screen } from "@testing-library/react";
 
-//API Fetch Matches the number of Products
-
-import React from "react";
-
-import { render, fireEvent } from "@testing-library/react";
-import "@testing-library/jest-dom/extend-expect";
-
+import * as React from "react";
+import { Provider } from "react-redux";
+import store from "./stores";
 import App from "./App";
+import userEvent from "@testing-library/user-event";
 
-const renderApp = () => render(<App />);
+const render = (ui, { store1 = store, ...renderOptions } = {}) => {
+  const Wrapper = ({ children }) => (
+    <Provider store={store}>{children}</Provider>
+  );
 
-test("Product render matches Prouct Name", async () => {
-  let { getByTestId } = renderApp();
+  return rtlRender(ui, { wrapper: Wrapper, ...renderOptions });
+};
 
-  const sourceInput = getByTestId("products");
+// To test header links gets displayed properly
+test("loads header", () => {
+  render(<App />);
 
-  fireEvent.click(sourceInput);
+  expect(screen.findByTestId("Products")).toBeTruthy();
+  expect(screen.findByTestId("Carts")).toBeTruthy();
+});
 
-  const Product = await getByTestId("hero Product");
+// To test Products fetched rightly
+test("loads and displays products", async () => {
+  render(<App />);
 
-  expect(Product.children[0].textContent).toEqual("hero Product");
+  await screen.findByText("hero Product");
+  await screen.findByText("Product 1");
+  await screen.findByText("Product 2");
+  await screen.findByText("Product 3");
+  await screen.findByText("Product 4");
+  await screen.findByText("Product 5");
+  await screen.findByText("Product 6");
+});
+
+test("loads and displays products", async () => {
+  render(<App />);
+
+  const addCart1 = await (await screen.findByTestId("hero Product"))
+    .children[3];
+  userEvent.click(addCart1);
+  const cartValue = Number(
+    await (await screen.findByTestId("cartValue")).textContent
+  );
+
+  console.log(addCart1);
+
+  expect(cartValue).toBe(cartValue);
 });

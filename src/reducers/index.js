@@ -8,7 +8,7 @@ import {
   DELETE_CART
 } from "../actions";
 
-const initProduct = {
+export const initProduct = {
   numberCart: 0,
   Carts: [],
   _products: []
